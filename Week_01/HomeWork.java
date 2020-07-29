@@ -182,4 +182,39 @@ public class HomeWork {
         digits[0] = 1;
         return digits;
     }
+
+    /**
+     * Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+     * <p>
+     * <p>
+     * The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!
+     * <p>
+     * Example:
+     * <p>
+     * Input: [0,1,0,2,1,0,1,3,2,1,2,1]
+     * Output: 6
+     * https://leetcode.com/problems/trapping-rain-water/
+     *
+     * @param height
+     * @return
+     */
+    public int trap(int[] height) {
+        int left = 0, right = height.length - 1;
+        int ans = 0;
+        int leftMax = 0, rightMax = 0;
+        while (left < right) {
+            // 左边比右边低，左边比右边低，那么左边的最高高度比右边低，只需要最高高度跟当前节点的差作为水量即可。
+            if (height[left] < height[right]) {
+                if (height[left] >= leftMax) leftMax = height[left];
+                else ans += leftMax - height[left];
+                left++;
+            } else {
+                if (height[right] >= rightMax) rightMax = height[right];
+                else ans += rightMax - height[right];
+                right--;
+            }
+        }
+
+        return ans;
+    }
 }
