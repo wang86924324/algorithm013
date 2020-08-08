@@ -200,21 +200,17 @@ public class HomeWork {
      */
     public int trap(int[] height) {
         int left = 0, right = height.length - 1;
-        int ans = 0;
+        int ins = 0;
         int leftMax = 0, rightMax = 0;
         while (left < right) {
-            // 左边比右边低，左边比右边低，那么左边的最高高度比右边低，只需要最高高度跟当前节点的差作为水量即可。
-            if (height[left] < height[right]) {
-                if (height[left] >= leftMax) leftMax = height[left];
-                else ans += leftMax - height[left];
-                left++;
-            } else {
-                if (height[right] >= rightMax) rightMax = height[right];
-                else ans += rightMax - height[right];
-                right--;
-            }
+            if (height[left] < height[right])
+                if (height[left] > leftMax) leftMax = height[left++];
+                else ins += leftMax - height[left++];
+            else if (height[right] > rightMax) rightMax = height[right--];
+            else ins += rightMax - height[right--];
         }
-
-        return ans;
+        return ins;
     }
+
+
 }
