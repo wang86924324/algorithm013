@@ -117,6 +117,7 @@ public class HomeWork {
         }
     }
 
+    // 解法1：递归
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         inOrder(root, res);
@@ -129,4 +130,29 @@ public class HomeWork {
         res.add(treeNode.val);
         inOrder(treeNode.right, res);
     }
+
+    // 解法2 栈
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            // 一直往遍历左节点
+            while (curr != null) {
+                stack.add(curr);
+                curr = curr.left;
+            }
+            // 左节点为空，需要遍历右节点，由于是中序遍历，我们需要先保存出栈的节点数据
+
+            // 出栈的节点不可能为null
+            TreeNode temp = stack.pop();
+            res.add(temp.val);
+            curr = temp.right;
+        }
+        return res;
+    }
+
+
+
+
 }
