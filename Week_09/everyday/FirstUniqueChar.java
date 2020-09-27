@@ -5,17 +5,34 @@ package Week_09.everyday;
  */
 public class FirstUniqueChar {
 
+//    public int firstUniqChar(String s) {
+//        int[] stat = new int[26];
+//        for (int i = 0; i < s.length(); i++) {
+//            stat[s.charAt(i) - 'a']++;
+//        }
+//
+//        for (int i = 0; i < s.length(); i++) {
+//            if (stat[s.charAt(i) - 'a'] == 1) {
+//                return i;
+//            }
+//        }
+//        return -1;
+//    }
+
     public int firstUniqChar(String s) {
-        int[] stat = new int[26];
-        for (int i = 0; i < s.length(); i++) {
-            stat[s.charAt(i) - 'a']++;
+        // 数组下表记录
+        int[] counter = new int[26];
+        for (char ch : s.toCharArray()) {
+            counter[ch - 'a']++;
         }
 
+        // 遍历字符串中的字符找到第一个统计数为1的数字返回即可
         for (int i = 0; i < s.length(); i++) {
-            if (stat[s.charAt(i) - 'a'] == 1) {
+            if (counter[s.charAt(i) - 'a'] == 1) {
                 return i;
             }
         }
+
         return -1;
     }
 }
