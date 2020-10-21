@@ -1,7 +1,7 @@
 package homework.week6.tuesday;
 
-import homework.week5.TreeNode;
 
+import common.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 

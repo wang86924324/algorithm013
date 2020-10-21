@@ -1,17 +1,17 @@
 package homework.week6.thursday;
 
-import homework.week5.TreeNode;
 
+import common.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PreOrder {
     List<Integer> res = new ArrayList<>();
 
-    public List<Integer> preorder(Node root) {
+    public List<Integer> preorder(homework.week6.thursday.Node root) {
         if (root == null) return res;
         res.add(root.val);
-        for (Node child : root.children) {
+        for (homework.week6.thursday.Node child : root.children) {
             preorder(child);
         }
         return res;
@@ -23,7 +23,7 @@ public class PreOrder {
         if (left > right) return null;
 
         int mid = (left + right) / 2;
-        TreeNode root = new TreeNode();
+        TreeNode root = new TreeNode(-1);
         root.val = nums[mid];
         root.left = helper(nums, left, mid - 1);
         root.right = helper(nums, mid + 1, right);
